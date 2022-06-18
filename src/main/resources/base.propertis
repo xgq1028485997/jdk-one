@@ -1,0 +1,115 @@
+JDK与JRE有什么区别？
+JDK:Java Development Kit的简称
+    java开发工具包，提供了java的开发环境和运行环境。
+JRE:Java Runtime Environment的简称
+    java的运行环境，为java的运行提供了所需环境。
+javac:编译源码的编译器
+JDK包含JRE，还包含了javac，还包含了很多java程序调试和分析工具
+如果你需要运行java程序，只需要jre即可
+如果你想编写java程序，就需要安装jdk。
+
+==与equals的区别？
+==：对于基本类型与引用类型==的作用效果是不同的
+    基本类型：比较的是值得是否相同
+    引用类型：比较的是引用是否相同
+equals:本质上就是==，只不过String和Integer等重写了equal方法，把它变成了值的比较
+总结：==对于基本类型来说比较的是值，对于引用来说比较的是引用
+    equals默认是引用的比较，只是很多类重写了equals方法，如果String,Integer等，把它变成了值的比较，所以一般情况下equals比较的是值是否相等
+
+两个对象的hashCode()相同，equals一定为true？
+no
+散列表中，hashCode()相同，即相同对应的键值的哈希值相等，然哈希值相等，但键值对不一定相等
+理解：map中，value相同，但key不一定相同。
+
+哈希函数：地址（key） + 值(value)
+不同的key可以访问同一个地址，通过某个key,一定能得到唯一的value地址。
+
+final在java中的作用？
+修饰类，为最终类，不能被继承
+修饰方法，不能被重写
+修饰变量，变为常量，必须初始化，且不能被修改
+
+java中Math.round(-1.5)=？
+-1
+负数，<=0.5向上取整，>0.5向下取整
+正数，<0.5向下取整，>=0.5向下取整
+
+String属于基础数据类型吗？
+不属于
+基础类型只有8个：byte,boolean,char,short,int,float,long,double
+
+java中操作字符串有哪些类？有什么区别？
+String:是不可变的对象，每次操作都是生成新的String对象，然后将指针指向新的String对象
+StringBuffer和StringBuilder可在原字符串对象上进行操作
+StringBuffer：线程安全，适用于多线程
+StringBuilder：非线程安全，性能高于StringBuffer,适用于单线程
+
+String str="i"与String str = new String("i")一样吗？
+不一样
+内存分配方式不一样
+String str = "i"：java虚拟机会将其分配到常量池中
+String str = new String("i")：则会分配到堆内存中
+
+如何将字符串反转？
+StringBuilder 或 StringBuffer 的reverse();
+
+String类的常用方法都有那些？
+替换 replace
+切割 split
+截取 subString
+长度 length
+大小写转换 toLowerCase toUpperCase
+比较 equals
+返回字节 getByte
+
+抽象类必须有抽象方法吗？
+不需要
+
+普通类与抽象类有哪些区别？
+普通类不能包含抽象方法，可以直接实例化
+抽象类可以有抽象方法，不能直接实例化
+
+抽象类能不final修饰吗？
+不能
+抽象类就是为了让其他类继承，final修饰类，为最终类，不可被继承
+
+抽象类与接口的区别？
+实现方式不同：抽象类通过extends继承实现，接口通过implements实现
+类只能继承一个抽象类，但可以实现多个接口
+抽象类可以有构造函数，接口不能有
+抽象类内可有main方法，接口不行
+接口的方法修饰符默认是public,抽象类方法可以是任意修饰符
+
+抽象类                                  接口
+通过extends继承                 通过implements实现
+一个类只能继承一个                可继承多个
+可有构造方法                     不能有
+可有main方法，且可运行            不能
+内的方法可用任何修饰符             默认只有是public
+
+java中的IO流分为几种？
+按功能分:
+输出流output
+输入流input
+
+按类型分：
+字节流 和字符流
+字节流按8位传输，以字节单位输入输出数据
+字符流按16位传输，以字符单位输入输出数据
+
+BIO,NIO,AIO有什么区别？
+BIO:Block IO同步阻塞式IO,传统IO
+特点：模式简单方便，并发处理能力低
+NIO:New IO同步非堵塞IO，是传统IO，的升级。客户端与服务端通过channel（通道）通讯，实现了多路复用
+AIO：Asynchronous IO是NIO的升级，也叫NIO2。实现异步非堵塞IO，异步IO的操作是基于事件和回调机制
+
+Files的常用方法？
+文件是否存在 exists
+创建文件 createFile
+创建目录 createDirectory
+删除一个文件或目录 delete
+复制文件 copy
+移动文件 move
+查看文件个数 size
+读取文件 readAllLines
+写入文件 write
